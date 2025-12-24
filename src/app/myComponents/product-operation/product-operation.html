@@ -1,4 +1,4 @@
-<table>
+<!-- <table>
     <tr>
       <th>Id</th>
       <th>Ürün İsmi</th>
@@ -99,4 +99,73 @@
     <button type="submit" [disabled]="updateForm.invalid">Güncelle</button>
     <button type="button" (click)="cancelUpdate()">İptal</button>
   </form>
-  }
+  } -->
+
+  
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Ürün İsmi</th>
+          <th>Fiyat</th>
+          <th>Kategori</th>
+          <th>İşlemler</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(product of products(); track product.id){
+        <tr>
+          <td>{{ product.id }}</td>
+          <td>{{ product.productName }}</td>
+          <td class="price">{{ product.unitPrice | currency:'TRY':'symbol' }}</td>
+          <td><span class="badge">{{ product.categoryId }}</span></td>
+          <td class="actions">
+            <button class="btn-edit" (click)="startUpdate(product)">Güncelle</button>
+            <button class="btn-delete" (click)="onDelete(product.id)">Sil</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  
+  <hr />
+  
+  <form [formGroup]="createForm" (ngSubmit)="onCreate()" class="admin-form">
+    <h3>Ürün Ekle</h3>
+    
+    <div class="form-row">
+      <div class="field-wrapper">
+        <label>Ürün İsmi</label>
+        <input type="text" formControlName="productName" placeholder="Ürün adı..." />
+        @if(getErrorMessageByName(createForm, 'productName'); as msg){
+          <span class="error-msg">{{ msg }}</span>
+        }
+      </div>
+  
+      <div class="field-wrapper">
+        <label>Birim Fiyat</label>
+        <input type="number" formControlName="unitPrice" />
+        @if(getErrorMessageByName(createForm, 'unitPrice'); as msg){
+          <span class="error-msg">{{ msg }}</span>
+        }
+      </div>
+  
+      <div class="field-wrapper">
+        <label>Kategori Seç</label>
+        <select formControlName="categoryId">
+          <option value="">Seçiniz...</option>
+          @for(cat of categories(); track cat.id) {
+            <option [value]="cat.id">{{ cat.categoryName }}</option>
+          }
+        </select>
+        @if(getErrorMessageByName(createForm, 'categoryId'); as msg){
+          <span class="error-msg">{{ msg }}</span>
+        }
+      </div>
+  
+      <button type="submit" [disabled]="createForm.invalid" class="btn-add">Ekle</button>
+    </div>
+  </form>

@@ -1,220 +1,357 @@
-/* You can add global styles to this file, and also import other style files */
-/* --- TABLO KABUĞU (Container) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-page: #f8fafc;
+  --card-bg: #ffffff;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --success: #10b981;
+  --edit-bg: #f0f9ff;
+  --edit-color: #0284c7;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-page);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-main);
+  padding: 32px;
+  line-height: 1.6;
+}
+
+/* === TABLO KARTLARI === */
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 32px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
 table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #0f1116;
-    font-family: "Segoe UI", sans-serif;
-    color: #e2e6f3;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.45);
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: linear-gradient(to right, #f8fafc, #f1f5f9);
+}
+
+th {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-bottom: 2px solid var(--border);
+}
+
+tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.price {
+  font-weight: 600;
+  color: var(--success);
+  font-size: 15px;
+}
+
+.badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #e0e7ff 0%, #ddd6fe 100%);
+  color: #5b21b6;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* === FORM TASARIMI === */
+.admin-form {
+  background: var(--card-bg);
+  padding: 32px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+h3 {
+  margin: 0 0 28px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+  position: relative;
+  padding-bottom: 12px;
+}
+
+h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+/* YAN YANA DİZİLİM - BUTON DA YANINDA */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* === INPUT ALANLARI === */
+.field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 200px;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: 0.2px;
+}
+
+input, select {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: #ffffff;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+input::placeholder {
+  color: #94a3b8;
+}
+
+input:hover, select:hover {
+  border-color: #cbd5e1;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background: #fefeff;
+}
+
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+/* HATA MESAJI - INPUT ALTINDA */
+.error-msg {
+  color: var(--danger);
+  font-size: 11.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: -4px;
+  animation: slideDown 0.2s ease-out;
+}
+
+.error-msg::before {
+  content: '⚠';
+  font-size: 12px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
   }
-   
-  /* --- BAŞLIKLAR (Headers) --- */
-  th {
-    text-align: left;
-    padding: 14px 18px;
-    background: linear-gradient(to right, #2e3340, #282c34);
-    color: #9cc3ff;
-    letter-spacing: 0.5px;
-    font-size: 15px;
-    border-bottom: 2px solid #222631;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-  }
-   
-  /* --- SATIRLAR (Rows) --- */
-  td {
-    padding: 12px 18px;
-    border-bottom: 1px solid #2a2d35;
-    font-size: 14px;
-  }
-   
-  /* Satır hover efekti: zarif bir neon çizgi efekti */
-  tr:hover td {
-    background: #1b1e26;
-    color: #d6e2ff;
-    box-shadow: inset 4px 0 0 #4f8bff;
-    transition: 0.15s ease-in-out;
-  }
-   
-  /* --- Tek/çift satır ayrımı (zebra style) --- */
-  tr:nth-child(even) td {
-    background: #15171c;
-  }
-   
-  /* --- Mobil destek (responsive) --- */
-  @media (max-width: 600px) {
-    table {
-      font-size: 12px;
-    }
-   
-    td,
-    th {
-      padding: 10px 12px;
-    }
-  }
-   
-  /* -------------------------------------------------- */
-  /*  BAŞLIKLAR (h3, h4)                               */
-  /* -------------------------------------------------- */
-   
-  h3 {
-    font-family: "Segoe UI", sans-serif;
-    color: #e2e6f3;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-  }
-   
-  h4 {
-    font-family: "Segoe UI", sans-serif;
-    color: #9cc3ff;
-    margin: 18px 0 10px;
-  }
-   
-  /* -------------------------------------------------- */
-  /*  FORM GENEL YAPI                                   */
-  /*  (Yeni Kategori + Edit Formu için)                */
-  /* -------------------------------------------------- */
-   
-  form {
-    margin: 10px 0 18px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-  }
-   
-  /* Formların tablodan biraz ayrılması için */
-  form + hr {
-    margin-top: 10px;
-    margin-bottom: 18px;
-    border: none;
-    border-top: 1px solid #222631;
-  }
-   
-  /* -------------------------------------------------- */
-  /*  INPUT STİLLERİ                                    */
-  /* -------------------------------------------------- */
-   
-  input[type="text"] {
-    background: #15171c;
-    border: 1px solid #2f3545;
-    color: #e2e6f3;
-    padding: 7px 11px;
-    border-radius: 4px;
-    min-width: 220px;
-    font-size: 13px;
-    outline: none;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease,
-      background-color 0.15s ease;
-  }
-   
-  input[type="text"]::placeholder {
-    color: #6c7385;
-    font-size: 12px;
-  }
-   
-  input[type="text"]:focus {
-    border-color: #4f8bff;
-    box-shadow: 0 0 0 1px rgba(79, 139, 255, 0.4);
-    background: #181b22;
-  }
-   
-  /* -------------------------------------------------- */
-  /*  BUTON STİLLERİ (GENEL)                            */
-  /* -------------------------------------------------- */
-   
-  button {
-    font-family: "Segoe UI", sans-serif;
-    font-size: 13px;
-    padding: 6px 14px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    background: linear-gradient(135deg, #3a4a7a, #4f8bff);
-    color: #e2e6f3;
-    letter-spacing: 0.4px;
-    transition: transform 0.1s ease, box-shadow 0.15s ease,
-      background 0.15s ease, opacity 0.15s ease;
-    white-space: nowrap;
-  }
-   
-  button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 0 8px rgba(79, 139, 255, 0.5);
-    opacity: 0.95;
-  }
-   
-  button:active {
+  to {
+    opacity: 1;
     transform: translateY(0);
-    box-shadow: 0 0 4px rgba(79, 139, 255, 0.3);
   }
-   
-  /* -------------------------------------------------- */
-  /*  TABLO İÇİNDEKİ BUTONLAR (Güncelle / Sil)          */
-  /* -------------------------------------------------- */
-   
-  /* Tablo içindeki butonları biraz daha kompakt yap */
-  table td button {
-    padding: 4px 10px;
-    font-size: 12px;
-    margin-right: 6px;
+}
+
+/* === BUTONLAR === */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  letter-spacing: 0.2px;
+}
+
+/* EKLE BUTONU - INPUTLARLA AYNI SEVİYEDE */
+.btn-add {
+  height: 44px;
+  padding: 0 32px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  margin-top: 29px; /* Label yüksekliği + gap */
+  min-width: 120px;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-add:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+  background: linear-gradient(135deg, var(--primary-hover) 0%, #3730a3 100%);
+}
+
+.btn-add:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-add:disabled {
+  background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.btn-edit {
+  background: var(--edit-bg);
+  color: var(--edit-color);
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+.btn-edit:hover {
+  background: #e0f2fe;
+  transform: translateY(-1px);
+}
+
+.btn-delete {
+  background: #fef2f2;
+  color: var(--danger);
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+.btn-delete:hover {
+  background: #fee2e2;
+  transform: translateY(-1px);
+}
+
+/* === HR STİLİ === */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+  margin: 40px 0;
+}
+
+/* === RESPONSİVE TASARIM === */
+@media (max-width: 968px) {
+  .form-row {
+    flex-direction: column;
   }
-   
-  /* Güncelle butonu (ilk buton) → primary ton */
-  table td button:first-child {
-    background: linear-gradient(135deg, #365f9e, #4f8bff);
+
+  .btn-add {
+    width: 100%;
+    margin-top: 8px;
   }
-   
-  /* Sil butonu (ikinci buton) → hafif danger ton */
-  table td button:last-child {
-    background: linear-gradient(135deg, #7a2f3a, #ff4f6a);
+
+  .field-wrapper {
+    min-width: 100%;
   }
-   
-  table td button:last-child:hover {
-    box-shadow: 0 0 8px rgba(255, 79, 106, 0.5);
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
   }
-   
-  /* -------------------------------------------------- */
-  /*  SUBMIT / SECONDARY BUTON ÖZELLEŞTİRMELERİ         */
-  /* -------------------------------------------------- */
-   
-  /* Formlardaki ana submit butonları (Ekle / Kaydet) */
-  form button[type="submit"] {
-    background: linear-gradient(135deg, #3a7a5a, #42d392);
+
+  .card {
+    overflow-x: auto;
   }
-   
-  /* Edit formundaki İptal butonu (type="button") */
-  form button[type="button"] {
-    background: #343843;
-    color: #c3c7d4;
+
+  table {
+    min-width: 600px;
   }
-   
-  form button[type="button"]:hover {
-    background: #404552;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+
+  th, td {
+    padding: 12px 14px;
+    font-size: 13px;
   }
-   
-  /* -------------------------------------------------- */
-  /*  RESPONSIVE - FORM DİKEY YERLEŞİM (MOBİL)          */
-  /* -------------------------------------------------- */
-   
-  @media (max-width: 600px) {
-    form {
-      flex-direction: column;
-      align-items: stretch;
-    }
-   
-    input[type="text"] {
-      width: 100%;
-      min-width: auto;
-    }
-   
-    form button {
-      width: 100%;
-      text-align: center;
-    }
+}
+
+@media (max-width: 480px) {
+  .admin-form {
+    padding: 20px;
   }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .btn-edit, .btn-delete {
+    width: 100%;
+  }
+}

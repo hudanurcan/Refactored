@@ -1,4 +1,4 @@
-<table>
+<!-- <table>
   <tr>
     <th>Id</th>
     <th>İsim</th>
@@ -55,10 +55,13 @@
 
   <input type="hidden" formControlName="id" />
 
-  <label>
-    İsim
-    <input type="text" formControlName="name" />
-  </label>
+  <div class="form-group">
+    <label>İsim</label>
+    <input type="text" formControlName="name" placeholder="Kategori adı girin..." />
+    @if(getErrorMessageByName(createForm,'name'); as msg){
+      <span class="error-text">{{ msg }}</span>
+    }
+  </div>
   @if(getErrorMessageByName(updateForm,'name'); as msg){
   <div class="error">
     {{ msg }}
@@ -79,4 +82,56 @@
 
   <button type="button" (click)="cancelUpdate()">İptal</button>
 </form>
-}
+} -->
+
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>İsim</th>
+        <th>Açıklama</th>
+        <th>İşlemler</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(category of categories(); track category.id){
+      <tr>
+        <td>{{ category.id }}</td>
+        <td>{{ category.categoryName }}</td>
+        <td>{{ category.description }}</td>
+        <td class="actions">
+          <button class="btn-edit" (click)="startUpdate(category)">Güncelle</button>
+          <button class="btn-delete" (click)="onDelete(category.id)">Sil</button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<hr />
+
+<form [formGroup]="createForm" (ngSubmit)="onCreate()" class="admin-form">
+  <h3>Kategori Ekle</h3>
+  
+  <div class="form-row">
+    <div class="field-wrapper">
+      <label>İsim</label>
+      <input type="text" formControlName="name" placeholder="Kategori adı..." />
+      @if(getErrorMessageByName(createForm, 'name'); as msg){
+        <span class="error-msg">{{ msg }}</span>
+      }
+    </div>
+
+    <div class="field-wrapper">
+      <label>Açıklama</label>
+      <input type="text" formControlName="description" placeholder="Açıklama..." />
+      @if(getErrorMessageByName(createForm, 'description'); as msg){
+        <span class="error-msg">{{ msg }}</span>
+      }
+    </div>
+
+    <button type="submit" [disabled]="createForm.invalid" class="btn-add">Ekle</button>
+  </div>
+</form>
