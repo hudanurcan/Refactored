@@ -1,59 +1,11 @@
-# RefactoredCrud
+The primary objective of this project is to manage operational processes such as listing, creating, updating, and deleting (CRUD) categories and their associated products through a modern user interface.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
+**Technologies Used**
+Backend: .NET 8 Web API
+Frontend: Angular 21 (Signals & Reactive Forms)
 
-## Development server
+<img width="1920" height="1080" alt="Ekran Görüntüsü (3683)" src="https://github.com/user-attachments/assets/deee651d-e5ce-4acd-b476-00be26d3c408" />
+<img width="1920" height="1080" alt="Ekran Görüntüsü (3684)" src="https://github.com/user-attachments/assets/55d2b958-dd96-4f3a-bb3c-a902c4a33468" />
+<img width="1920" height="1080" alt="Ekran Görüntüsü (3688)" src="https://github.com/user-attachments/assets/6be1b585-83d4-451a-be8e-9002ea4a094c" />
 
-To start a local development server, run:
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
